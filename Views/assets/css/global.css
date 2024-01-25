@@ -1,0 +1,57 @@
+.btn-salir {
+  background-color: #b1450f !important;
+}
+.background-radial-gradient {
+  overflow-x: hidden;
+  background-color: #212529;
+  background-image: radial-gradient(
+      650px circle at 0% 0%,
+      #e69800 10%,
+      #e69800 35%,
+      #212529 75%,
+      #212529 80%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1250px circle at 100% 100%,
+      #6eb222 15%,
+      #212529 35%,
+      #212529 75%,
+      #212529 80%,
+      transparent 100%
+    );
+}
+.carousel-caption {
+  position: absolute;
+  right: 15%;
+  bottom: 16.25rem;
+  left: 15%;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  color: #fff;
+  text-align: center;
+
+  background-color: transparent;
+  backdrop-filter: blur(8.5px);
+}
+
+.footer {
+  background: linear-gradient(40deg, #b1450f, #e69800);
+  background-size: 400% 400%;
+
+  animation: AnimationName 6s ease infinite;
+}
+
+@keyframes AnimationName {
+  0% {
+    background-position: 99% 0%;
+  }
+
+  50% {
+    background-position: 2% 100%;
+  }
+
+  100% {
+    background-position: 99% 0%;
+  }
+}
