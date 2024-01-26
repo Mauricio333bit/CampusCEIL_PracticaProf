@@ -7,6 +7,7 @@
     <title>IES 9024</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
+    <link rel="stylesheet" type="text/css" href="./assets/css/v_reg.css">
 
 </html>
 
@@ -17,89 +18,7 @@
     <!-- Section: Design Block -->
     <section class="background-radial-gradient 
      vh-100">
-        <style>
-            .background-radial-gradient {
-                background-color: #212529;
-                background-image: radial-gradient(650px circle at 0% 0%,
-                        #e69800 10%,
-                        #e69800 35%,
-                        #212529 75%,
-                        #212529 80%,
-                        transparent 100%),
-                    radial-gradient(1250px circle at 100% 100%,
-                        #6eb222 15%,
-                        #212529 35%,
-                        #212529 75%,
-                        #212529 80%,
-                        transparent 100%);
-            }
 
-            #radius-shape-1 {
-                border-radius: 44% 23% 63% 32% / 70% 33% 67% 30%;
-                height: 220px;
-                width: 220px;
-                top: 378px;
-                left: 179px;
-                background: radial-gradient(#1776BA, #1776AA);
-                overflow: hidden;
-                animation-name: floatAnimation;
-                animation-duration: 14s;
-                animation-timing-function: ease-in-out;
-                animation-fill-mode: forwards;
-                animation-iteration-count: infinite;
-            }
-
-            #radius-shape-2 {
-                border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
-                bottom: 306px;
-                right: 7px;
-                width: 300px;
-                height: 300px;
-                background: radial-gradient(#B1450F, #B1450F);
-                overflow: hidden;
-                animation-name: floatAnimation2;
-                animation-duration: 14s;
-                animation-timing-function: ease-in-out;
-                animation-fill-mode: forwards;
-                animation-iteration-count: infinite;
-            }
-
-            .bg-glass {
-                background: transparent;
-                backdrop-filter: blur(57px);
-                border: solid 1px white;
-                border-radius: 43px;
-            }
-
-
-            @keyframes floatAnimation {
-                0% {
-                    transform: translateX(0);
-                }
-
-                50% {
-                    transform: translateX(-2rem);
-                }
-
-                100% {
-                    transform: translateX(0);
-                }
-            }
-
-            @keyframes floatAnimation2 {
-                0% {
-                    transform: translateY(0);
-                }
-
-                50% {
-                    transform: translateY(-3rem);
-                }
-
-                100% {
-                    transform: translateY(0);
-                }
-            }
-        </style>
 
         <div class="container px-4 mb-4  text-lg-start align-items-center ">
             <div class=" vh-100 row gx-lg-5 align-items-center justify-content-center mb-5 ">
@@ -110,58 +29,50 @@
 
 
                     <div class="card bg-glass ">
-                        <div class="card-body px-4 py-5 px-md-5 ">
+                        <div class="card-body px-4 py-3 px-md-5 ">
                             <div class="d-flex justify-content-center mb-2">
 
-                                <img src="./imagenes/iesLogo.png" class="brand_logo" alt="Logo" height="60" />
+                                <img src="./assets/imagenes/iesLogo.png" class="brand_logo" alt="Logo" height="60" />
+                                <h1 class=" display-5 fw-bold ls-tight text-white">
+                                    IES 9-024
 
+                                </h1>
                             </div>
-                            <form class="mx-1 mx-md-4" action="../Controller/c_user.php?action=register" method="POST">
+                            <form class="mx-1 mx-md-4 needs-validation" action="../Controller/c_user.php?action=register" method="POST" novalidate>
                                 <!--formulario que ejecuta metodo post tomando los datos de input, direcciona a el controller de user y envia el parametro action register-->
 
-                                <div class="d-flex flex-row align-items-center mb-2">
-
-                                    <div class="form-outline flex-fill text-white">
-                                        <label class="form-label" for="form3Example1c">Nombre</label>
-                                        <input require type="text" name="nameNewUser" class="form-control" />
-                                        <label class="form-label" for="form3Example1c">Apellido</label>
-                                        <input require type="text" name="lastNameNewUser" class="form-control" />
-
-                                    </div>
+                                <!-- Nombre input -->
+                                <label class="form-label text-white" for="formName">Nombre</label>
+                                <input type="text" id="formName" class="form-control mb-2" placeholder="Emila" name="nameNewUser" id="validationDefault01" required />
+                                <div id="validationServerUsernameFeedback" class="invalid-feedback text-warning">
+                                    Tienes que ingresar un nombre.
+                                </div>
+                                <!-- Apellido input -->
+                                <label class="form-label text-white" for="formLastName">Apellido</label>
+                                <input type="text" id="formLastName" class="form-control mb-2" placeholder="Perez" name="lastNameNewUser" id="validationDefault01" required />
+                                <div id="validationServerUsernameFeedback" class="invalid-feedback text-warning">
+                                    Debes ingresar tu apellido.
                                 </div>
 
-                                <div class="d-flex flex-row align-items-center mb-2">
-
-                                    <div class="form-outline flex-fill mb-0">
-                                        <label class="form-label text-white" for="form3Example3c">Email</label>
-                                        <input require type="email" name="emailNewUser" class="form-control" />
-
-                                    </div>
+                                <!-- Email input -->
+                                <label class="form-label text-white" for="formName">Email</label>
+                                <input type="email" id="formName" class="form-control mb-2" placeholder="usuario@gmail.com" name="emailNewUser" id="validationDefault01" required />
+                                <div id="validationServerUsernameFeedback" class="invalid-feedback text-warning">
+                                    Tienes que ingresar un correo valido.
                                 </div>
 
-                                <div class="d-flex flex-row align-items-center mb-2">
 
-                                    <div class="form-outline flex-fill mb-0">
-                                        <label class="form-label text-white" for="form3Example4c">Contraseña</label>
-                                        <input require type="password" name="passNewUser" class="form-control" />
-
-                                    </div>
+                                <!-- Password input -->
+                                <label class="form-label text-white" for="formPwd">Contraseña</label>
+                                <input type="password" required name="passNewUser" class="form-control input_pass " id="formPwd" placeholder="contraseña" />
+                                <div id="validationServerUsernameFeedback" class="invalid-feedback text-warning">
+                                    Por favor,ingresa una contraseña.
                                 </div>
 
-                                <div class="d-flex flex-row align-items-center mb-4">
-
-                                    <div class="form-outline flex-fill mb-0">
-                                        <label class="form-label text-white" for="form3Example4cd">Repite tu contraseña</label>
-                                        <input require type="password" id="form3Example4cd" class="form-control" />
-
-                                    </div>
-                                </div>
-
-                                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                <div class="d-flex justify-content-center pt-3 mx-4 mb-3 mb-lg-4">
                                     <button type="submit" class="btn btn-primary col-12">Crear cuenta</button>
                                 </div>
-                                <!--input que me ayuda a determinar la funcion en el contrroler-->
-                                <input type="hidden" name="action" value="login">
+
 
                             </form>
 
@@ -174,6 +85,26 @@
     <!-- Section: Design Block -->
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
 </body>
 
 </html>
