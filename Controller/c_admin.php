@@ -6,6 +6,11 @@ $admin = new Admin_con();
 // parametro que se recibe mediante la irl en la accion del form
 $action = $_GET['action'];
 $id = $_GET["id"];
+
+
+if ($action == 'register') {
+    $admin->register_usr();
+};
 if ($action == 'update') {
     $admin->edit_usr($id);
 };
@@ -24,6 +29,32 @@ class Admin_con
     {
         $this->model = new User();
     }
+
+    public function register_usr()
+    {
+
+        $usr = new User();
+
+        $usr->setUsrName($_POST['nombre']);
+        $usr->setUsrLastname($_POST['apellido']);
+        $usr->setUsrEmail($_POST['email']);
+        $usr->setUsrPswd($_POST['contraseña']);
+        $usr->setUsrIdType($_POST['tipo']);
+
+        try {
+            require_once("./c_email.php");
+            sendMail($correoBienvenida, $usr->getUsrEmail());
+
+            if ($this->model->insert_usrDB($usr)) {
+
+                header("location:../Views/v_admin.php");
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
     public function edit_usr(int $id)
     {
         $usr = $this->model->get_usrByIdDB($id);
@@ -36,6 +67,7 @@ class Admin_con
 
 
         $usr->update_usr($usr);
+        header("location:../Views/v_admin.php");
     }
     public function delete_usr(int $id)
     {

@@ -1,9 +1,17 @@
 <?php
+session_start();
 require_once("../Model/user.php");
 $user = new User();
-error_reporting(0);
 
-session_start();
+if (empty($_SESSION["userName"]) || $_SESSION['tipoDeCuenta'] != 1) {
+
+    echo "ERROR: usuario no autorizado,debes iniciar sesion.";
+
+    die();
+}
+
+
+
 $li_Acceder_UserName;
 if (empty($_SESSION["userName"])) {
     $li_Acceder_UserName = " <a class='nav-link active' href='Views/v_login.php'>ACCEDER</a>";
@@ -44,8 +52,8 @@ if (empty($_SESSION["userName"])) {
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-opacity-80 shadow">
             <div class="container-fluid mx-5 justify-content-center justify-content-sm-between">
                 <div class="justify-content-center align-items-center">
-                    <a class="navbar-brand" href="#">
-                        <img src="./imagenes/iesLogo.png" class="" width="75" alt="" />
+                    <a class="navbar-brand" href="/ProyectoFinalPraPro/">
+                        <img src="./assets/imagenes/iesLogo.png" class="" width="75" alt="" />
                     </a>
                     <span class="text-light fw-normal">IES 9-024</span>
                 </div>
@@ -55,10 +63,10 @@ if (empty($_SESSION["userName"])) {
                 <div class="collapse navbar-collapse justify-content-end text-center" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="./v_oferta_educativa.php">Oferta educativa</a>
+                            <a class="nav-link " aria-current="page" href="./v_admin_oferta_educativa.php">Oferta educativa</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Institucion</a>
+                            <a class="nav-link" href="#">Inscripciones</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#formularios">Extension</a>
@@ -75,9 +83,21 @@ if (empty($_SESSION["userName"])) {
     </header>
 
     <main>
-        <div class="alert alert-success" role="alert">
-            A simple success alert—check it out!
-        </div>
+        <form method="POST" class="input-group mb-3 gap-2 w-75 needs-validation my-3 mx-auto" action="../Controller/c_admin.php?action=register" method="POST" novalidate>
+            <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" name="nombre" aria-describedby="button-addon2">
+            <input type="text" class="form-control" placeholder="Apellido" aria-label="apellido" name="apellido" aria-describedby="button-addon2">
+            <input type="text" class="form-control" placeholder="Email" aria-label="email" name="email" aria-describedby="button-addon2">
+            <input type="text" class="form-control" placeholder="Contraseña" aria-label="contraseña" name="contraseña" aria-describedby="button-addon2">
+
+            <select class="form-select" id="inputGroupSelect01" name="tipo">
+
+                <option value="1" selected>Administrador</option>
+                <option value="2">Ususario estandar</option>
+
+            </select>
+
+            <button class="btn btn-success" type="submit" id="button-addon2">Agregar</button>
+        </form>
         <table class="table w-75 mx-auto justify-content-center my-4">
             <thead>
                 <tr>

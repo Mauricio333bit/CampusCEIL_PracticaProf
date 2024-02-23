@@ -75,23 +75,23 @@ if (empty($_SESSION["userName"])) {
                 <div class="carousel-item active">
                     <img src="Views/assets/imagenes/studio.webp" class="d-block w-100 vh-100 object-fit-cover" alt="...">
                     <div class="carousel-caption  rounded p-3">
-                        <h2>First slide label</h5>
+                        <h2>Crecimiento continuo</h5>
                             <p>Tenemos como misión acompañar los diversos procesos relacionados al fortalecimiento institucional.A partir de algunas preguntas, nos gustaría conocer tu experiencia como estudiante y profundizar sobre algunos temas relacionados a tu trayectoria educativa.Las respuestas que brindes serán fundamentales para el diseño de propuestas de acompañamiento institucional de calidad.
                             <p>
                     </div>
 
                 </div>
                 <div class="carousel-item w-100 vh-100">
-                    <img src="Views/assets/imagenes/startup.webp" class="d-block  object-fit-cover" alt="...">
+                    <img src="Views/assets/imagenes/students.webp" class="d-block w-100 vh-100 object-fit-cover" alt="...">
                     <div class="carousel-caption rounded p-3">
-                        <h2>First slide label</h5>
+                        <h2>Espacios digitales</h5>
                             <p>Contamos con Espacios Digitales, destinados a estudiantes que tengan dificultades de conectividad o en el acceso a una computadora. Dichos espacios, tienen como finalidad acercar herramientas a los/as estudiantes que las necesiten, para que puedan continuar con sus estudios. </p>
                     </div>
 
                 </div>
                 <div class="carousel-item">
-                    <img src="Views/assets/imagenes/students.webp" class="d-block w-100 vh-100 object-fit-cover" alt="...">
 
+                    <img src="Views/assets/imagenes/startup.webp" class="d-block w-100 vh-100 object-fit-cover" alt="...">
                     <div class="carousel-caption  rounded p-3">
                         <h2>Asistencia Técnica</h5>
                             <p>Si tenes dificultades técnicas en la utilización del Campus > Contactate con la Mesa de Ayuda haciendo <a href="" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">clic acá</a>.</p>

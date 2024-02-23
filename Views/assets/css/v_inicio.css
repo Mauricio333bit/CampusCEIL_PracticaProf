@@ -10,25 +10,7 @@
 
   backdrop-filter: blur(8.5px);
 }
-.background-radial-gradient {
-  background-color: #212529;
-  background-image: radial-gradient(
-      650px circle at 0% 0%,
-      #e69800 10%,
-      #e69800 35%,
-      #212529 75%,
-      #212529 80%,
-      transparent 100%
-    ),
-    radial-gradient(
-      1250px circle at 100% 100%,
-      #6eb222 15%,
-      #212529 35%,
-      #212529 75%,
-      #212529 80%,
-      transparent 100%
-    );
-}
+
 .footer,
 .carousel-caption {
   background: linear-gradient(40deg, #b1450f, #e69800);

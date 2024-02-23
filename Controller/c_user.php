@@ -35,18 +35,21 @@ class User_con
         $usr->setUsrLastname($_POST['lastNameNewUser']);
         $usr->setUsrEmail($_POST['emailNewUser']);
         $usr->setUsrPswd($_POST['passNewUser']);
+        $usr->setUsrIdType(2);
 
         try {
             require_once("./c_email.php");
             sendMail($correoBienvenida, $usr->getUsrEmail());
-            $this->model->insert_usrDB($usr);
+
+            if ($this->model->insert_usrDB($usr)) {
+
+                header("location:../Views/v_registro_concluido.php");
+            }
         } catch (Exception $e) {
             echo $e->getMessage();
         }
     }
-    public function delete_usr()
-    {
-    }
+
     //iniciar sesion y direccionar a la pagina correcta segun el tipo de cuenta
     public function login_usr()
     {

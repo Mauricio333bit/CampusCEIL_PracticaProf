@@ -77,6 +77,8 @@ class User
     {
         $this->usr_id_type = $id_type;
     }
+
+    //devuelve una array con los usuarios cargados en la db
     public function list_usr()
     {
 
@@ -88,37 +90,42 @@ class User
 
         return $dbUsers;
     }
+
+
     //Metodo para realizar el insert de un nuevo usuario en la db
-    public function insert_usrDB(User $usr)
+    public function insert_usrDB(User $usr): ?bool
     {
 
         echo "Estas en insert";
 
+
+
         try {
-            $insertUsrSql = "INSERT INTO usuario VALUES(null,'" . $usr->getUsrName() . "','" . $usr->getUsrLastname() . "','" . $usr->getUsrEmail() . "','" . $usr->getUsrPswd() . "',2, null)";
+            $insertUsrSql = "INSERT INTO usuario VALUES(null,'" . $usr->getUsrName() . "','" . $usr->getUsrLastname() . "','" . $usr->getUsrEmail() . "','" . $usr->getUsrPswd() . "', " . $usr->getUsrIdType() . " , null)";
 
             $queryAddUsr = mysqli_query($this->usr_connect, $insertUsrSql);
+            return $queryAddUsr;
+        } catch (mysqli_sql_exception $e) {
 
-            if ($queryAddUsr) {
-
-                header("location:../Views/v_registro_concluido.php");
-            }
-        } catch (Exception $e) {
-            return "No se pudo insertar el nuevo usuario en la BD" . $e->getMessage();
+            return false;
         }
     }
     //Metodo para tomar el usr si existe en la db en base a email y contraseña
     public function get_usrDB(string $emailUsr, string $passwordUsr)
     {
-        echo "estas en modesl;";
+        echo "estas en model get;";
 
 
         session_start();
 
 
         $queryGetUsr = "SELECT * FROM usuario where us_email='$emailUsr' and us_password='$passwordUsr'"; //consulta sql para obtener el usuario si existe en la db
+
         $resultado = mysqli_query($this->usr_connect, $queryGetUsr);
 
+        if (!$resultado || mysqli_num_rows($resultado) <= 0) {
+            echo "usuario y contraseñas invalidas";
+        }
 
         $userObtenido = mysqli_fetch_array($resultado);
 
@@ -147,6 +154,7 @@ class User
     // actualizar usuario en la db
     public function update_usr(User $usr)
     {
+        echo  'entraste al metodo de update';
         $sql = "UPDATE usuario 
         SET us_nombre='" . $usr->getUsrName() . "', 
         us_apellido='" . $usr->getUsrLastname() . "',

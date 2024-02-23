@@ -1,6 +1,7 @@
 <?php
 include("../Model/conectionDB.php");
 session_start();
+
 $li_Acceder_UserName;
 if (empty($_SESSION["userName"])) {
     $li_Acceder_UserName = " <a class='nav-link active' href='v_login.php'>ACCEDER</a>";

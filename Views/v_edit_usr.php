@@ -5,7 +5,7 @@ $id_user = $_GET["id"];
 
 $userEdit = $user->get_usrByIdDB($id_user);
 
-error_reporting(0);
+
 
 session_start();
 $li_Acceder_UserName;
