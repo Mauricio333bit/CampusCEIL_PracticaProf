@@ -116,9 +116,6 @@ class User
         echo "estas en model get;";
 
 
-        session_start();
-
-
         $queryGetUsr = "SELECT * FROM usuario where us_email='$emailUsr' and us_password='$passwordUsr'"; //consulta sql para obtener el usuario si existe en la db
 
         $resultado = mysqli_query($this->usr_connect, $queryGetUsr);
@@ -128,7 +125,6 @@ class User
         }
 
         $userObtenido = mysqli_fetch_array($resultado);
-
 
         return $userObtenido;
     }
@@ -169,8 +165,6 @@ class User
         // Ejecutar la sentencia SQL
         if (mysqli_query($this->usr_connect, $sql)) {
             return true;
-        } else {
-            return false;
         }
     }
     public function delete_usrDB(int $id)
@@ -184,8 +178,6 @@ class User
         // Ejecutar la sentencia SQL
         if (mysqli_query($this->usr_connect, $queryDeleteUsr)) {
             return true;
-        } else {
-            return false;
         }
     }
 }

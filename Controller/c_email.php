@@ -13,7 +13,8 @@ $correoBienvenida = crearMail("lavalleies9024@gmail.com", "Bienvenido a nuestra 
 
 
 
-function crearMail($emisor, $mensaje)
+
+function crearMail($emisor, $mensaje,)
 {
     $mail = new PHPMailer(true);
     //Server settings para el acceso a la cuenta emisora

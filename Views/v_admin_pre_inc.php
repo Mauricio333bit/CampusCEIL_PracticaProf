@@ -1,7 +1,7 @@
 <?php
-session_start();
-require_once("../Model/user.php");
-$user = new User();
+
+require_once("../Model/pre_inscripciones.php");
+$preIn = new PreInscripcion();
 
 if (empty($_SESSION["userName"]) || $_SESSION['tipoDeCuenta'] != 1) {
 
@@ -83,59 +83,32 @@ if (empty($_SESSION["userName"])) {
     </header>
 
     <main>
-        <form method="POST" class="input-group mb-3 gap-2 w-75 needs-validation my-3 mx-auto" action="../Controller/c_admin.php?action=register" method="POST" novalidate>
-            <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" name="nombre" aria-describedby="button-addon2">
-            <input type="text" class="form-control" placeholder="Apellido" aria-label="apellido" name="apellido" aria-describedby="button-addon2">
-            <input type="text" class="form-control" placeholder="Email" aria-label="email" name="email" aria-describedby="button-addon2">
-            <input type="text" class="form-control" placeholder="Contraseña" aria-label="contraseña" name="contraseña" aria-describedby="button-addon2">
 
-            <select class="form-select" id="inputGroupSelect01" name="tipo">
-
-                <option value="1" selected>Administrador</option>
-                <option value="2">Ususario estandar</option>
-
-            </select>
-
-            <button class="btn btn-success" type="submit" id="button-addon2">Agregar</button>
-        </form>
         <table class="table w-75 mx-auto justify-content-center my-4">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Contraseña</th>
-                    <th scope="col">Tipo de Cuenta</th>
-                    <th scope="col">Fecha de inicio</th>
+
+                    <th scope="col">FECHA</th>
+                    <th scope="col">CARRERA</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">CORREO</th>
+
 
                 </tr>
             </thead>
             <tbody class="table-group-divider">
 
                 <?php
-                foreach ($user->list_usr() as $usuario) {
+                foreach ($preIn->list_pre_ins() as $preIn) {
                 ?>
                     <tr>
-                        <th scope="row"><?= $usuario['us_id'] ?></th>
-                        <td><?= $usuario['us_nombre'] ?></td>
-                        <td><?= $usuario['us_apellido'] ?></td>
-                        <td><?= $usuario['us_email'] ?></td>
-                        <td><?= $usuario['us_password'] ?></td>
-                        <td><?= $usuario['tipo'] ?></td>
-                        <td><?= $usuario['fecha_inicio'] ?></td>
-                        <td>
-                            <div class="d-flex gap-2 row">
-                                <!--mediante parametros en la url envio datos que determinan que hacer en el controller-->
-                                <a href="v_edit_usr.php?id=<?= $usuario['us_id'] ?>">
-                                    <button type="button" class="btn btn-info col-10">Editar</button>
-                                </a>
-                                <a href="../Controller/c_admin.php?action=delete&id=<?= $usuario['us_id'] ?>">
-                                    <button type="button" class="btn btn-danger col-10">Eliminar</button>
-                                </a>
 
-                            </div>
-                        </td>
+                        <td><?= $preIn['fecha'] ?></td>
+                        <td><?= $preIn['carrera'] ?></td>
+                        <td><?= $preIn['nombre'] ?></td>
+                        <td><?= $preIn['correo'] ?></td>
+
+
 
                     </tr>
                 <?php }; ?>

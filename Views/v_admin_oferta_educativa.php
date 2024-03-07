@@ -134,7 +134,7 @@ if (isset($_POST['deletePro'])) {
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-opacity-80 shadow">
             <div class="container-fluid mx-5 justify-content-center justify-content-sm-between">
                 <div class="justify-content-center align-items-center">
-                    <a class="navbar-brand" href="/ProyectoFinalPraPro/Views/v_admin.php">
+                    <a class="navbar-brand" href="/ProyectoFinalPraPro/">
                         <img src="./assets/imagenes/iesLogo.png" class="" width="75" alt="" />
                     </a>
                     <span class="text-light fw-normal">IES 9-024</span>
@@ -145,13 +145,13 @@ if (isset($_POST['deletePro'])) {
                 <div class="collapse navbar-collapse justify-content-end text-center" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="Views/v_oferta_educativa.php">Oferta educativa</a>
+                            <a class="nav-link " aria-current="page" href="./v_admin_oferta_educativa.php">Oferta educativa</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Institucion</a>
+                            <a class="nav-link" href="./v_admin_pre_inc.php">Inscripciones</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#formularios">Extension</a>
+                            <a class="nav-link" href="./v_admin.php">Ususarios</a>
                         </li>
                         <li>
                             <?php echo $li_Acceder_UserName; ?>

@@ -3,7 +3,10 @@ include("../Model/conectionDB.php");
 session_start();
 
 $li_Acceder_UserName;
+$elementPreInsPro;
+
 if (empty($_SESSION["userName"])) {
+
     $li_Acceder_UserName = " <a class='nav-link active' href='v_login.php'>ACCEDER</a>";
 } else {
     $nameUser = $_SESSION["userName"];
@@ -93,7 +96,19 @@ $queryTecnicaturas = mysqli_query($conection->connect(), $sqlTecnicaturas);
             <div class="accordion" id="accordionPanelsStayOpenExample">
 
                 <?php
+                $bdProf;
                 while ($bdProf = mysqli_fetch_array($queryProfesorados)) {
+                    if (empty($_SESSION["userName"])) {
+                        $elementPreInsPro = "<a class='' href='v_login.php'>Para preinscribirte debes iniciar sesion</a> ";
+                    } else {
+                        $elementPreInsPro = "<a href='../Controller/c_pre_inscripciones.php?action=iPro&id=";
+                        $elementPreInsPro .= $_SESSION["id"];
+                        $elementPreInsPro .= "&fk_id-pro=";
+                        $elementPreInsPro .= $bdProf['idProf'];
+                        $elementPreInsPro .= "'>";
+                        $elementPreInsPro .= "<button type='button' class='btn btn-success col-10'>Realizar Pre-Inscripcion</button>";
+                        $elementPreInsPro .= "</a>";
+                    }
                 ?>
                     <div class="accordion-item">
                         <h2 class="accordion-header">
@@ -102,13 +117,15 @@ $queryTecnicaturas = mysqli_query($conection->connect(), $sqlTecnicaturas);
 
                             </button>
                         </h2>
-                        <div id="panelsStayOpen-collapse<?= $bdProf['idProf'] ?>" class="accordion-collapse collapse">
-                            <div class="accordion-body">
+                        <div id="panelsStayOpen-collapse<?= $bdProf['idProf'] ?>" class="accordion-collapse collapse mb-2">
+                            <div class="accordion-body mb-1">
                                 <?= $bdProf['txtProf'] ?><a href="<?= $bdProf['linkProf'] ?>">Mas Info</a>
                             </div>
+                            <?= $elementPreInsPro ?>
                         </div>
                     </div>
-                <?php }; ?>
+                <?php
+                }; ?>
             </div>
 
             <h1 class=" bold my-2 mb-4">Tecnicaturas</h1>
@@ -116,6 +133,17 @@ $queryTecnicaturas = mysqli_query($conection->connect(), $sqlTecnicaturas);
 
                 <?php
                 while ($bdTec = mysqli_fetch_array($queryTecnicaturas)) {
+                    if (empty($_SESSION["userName"])) {
+                        $elementPreInsTec = "<a class='' href='v_login.php'>Para preinscribirte debes iniciar sesion</a> ";
+                    } else {
+                        $elementPreInsTec = "<a href='../Controller/c_pre_inscripciones.php?action=iTec&id=";
+                        $elementPreInsTec .= $_SESSION["id"];
+                        $elementPreInsTec .= "&fk_id-tec=";
+                        $elementPreInsTec .= $bdTec['idTec'];
+                        $elementPreInsTec .= "'>";
+                        $elementPreInsTec .= "<button type='button' class='btn btn-success col-10'>Realizar Pre-Inscripcion</button>";
+                        $elementPreInsTec .= "</a>";
+                    }
                 ?>
                     <div class="accordion-item">
                         <h2 class="accordion-header">
@@ -128,6 +156,7 @@ $queryTecnicaturas = mysqli_query($conection->connect(), $sqlTecnicaturas);
                             <div class="accordion-body">
                                 <?= $bdTec['txtTec'] ?><a href="<?= $bdTec['linkTec'] ?>">Mas Info</a>
                             </div>
+                            <?= $elementPreInsTec ?>
                         </div>
                     </div>
                 <?php }; ?>

@@ -1,5 +1,6 @@
 <?php
 require_once("../Model/user.php");
+session_start();
 echo "llegaste";
 $usuario = new User_con();
 
@@ -63,19 +64,22 @@ class User_con
 
                 $_SESSION["user"] = $usrEmail;
                 $_SESSION["pass"] = $usrPasswd;
+                $_SESSION["id"] = $userObtenido['us_id'];
+
 
                 switch ($userObtenido['fk_id_cargo']) {
                     case 1:
                         $_SESSION["userName"] = $userObtenido['us_nombre'];
+
                         $_SESSION['tipoDeCuenta'] = $userObtenido['fk_id_cargo'];
                         header("location:../Views/v_admin.php");
                         break;
                     case 2:
-                        header("location:../");
                         $_SESSION["userName"] = $userObtenido['us_nombre'];
 
                         $_SESSION['tipoDeCuenta'] = $userObtenido['fk_id_cargo'];
 
+                        header("location:../");
                         break;
                 }
             } else {

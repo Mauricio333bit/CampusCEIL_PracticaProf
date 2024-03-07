@@ -2,7 +2,7 @@
 
 require_once("conectionDB.php");
 session_start();
-class preInscripcion
+class PreInscripcion
 {
 
     private $pri_connect;
@@ -72,12 +72,18 @@ class preInscripcion
     public function list_pre_ins()
     {
 
-        $queryPre_ins = "select pr.fecha ,(SELECT
-      CASE
-        WHEN fk_id_tecnicatura IS NOT NULL THEN (select t.tec_nombre from tecnicatura t inner join pre_inscripcion pr on t.tec_id = pr.fk_id_tecnicatura ) 
-        WHEN fk_id_profesorado IS NOT NULL THEN (select p.pro_nombre from profesorado p   inner join pre_inscripcion pr on p.pro_id = pr.fk_id_profesorado)
-      END AS tipo
-    FROM pre_inscripcion) as carrera, u.us_nombre as nombre, u.us_email as correo from pre_inscripcion pr inner join usuario u on u.us_id = pr.fk_id_usuario;";
+        $queryPre_ins = "SELECT
+        pr.fecha,
+        CASE
+          WHEN t.tec_nombre IS NOT NULL THEN t.tec_nombre 
+          WHEN p.pro_nombre IS NOT NULL THEN p.pro_nombre
+        END AS carrera,
+        u.us_nombre AS nombre,
+        u.us_email AS correo
+      FROM pre_inscripcion pr
+      LEFT JOIN tecnicatura t ON t.tec_id = pr.fk_id_tecnicatura
+      LEFT JOIN profesorado p ON p.pro_id = pr.fk_id_profesorado 
+      INNER JOIN usuario u ON u.us_id = pr.fk_id_usuario;";
 
         $dbPre_ins = mysqli_query($this->pri_connect, $queryPre_ins);
 
@@ -98,8 +104,11 @@ class preInscripcion
             $queryInsertPreIns = mysqli_query($this->pri_connect, $insertPre_ins);
 
             if ($queryInsertPreIns) {
+                require_once("./c_email.php");
+                $mailPreINscripcion = crearMail("lavalleies9024@gmail.com", "Realizaste una pre-inscripcion para '" . $queryInsertPreIns['carrera']  . "' en los proximos dias recibiras informacion para poder completar la inscripcion");
+                sendMail($mailPreINscripcion, $queryInsertPreIns['correo']);
 
-                header("location:../Views/v_registro_concluido.php");
+                return true;
             }
         } catch (Exception $e) {
             return "No se pudo inscribir el usuario en la Tecnicatura" . $e->getMessage();
@@ -119,8 +128,7 @@ class preInscripcion
             $queryInsertPreIns = mysqli_query($this->pri_connect, $insertPre_ins);
 
             if ($queryInsertPreIns) {
-
-                header("location:../Views/v_registro_concluido.php");
+                return true;
             }
         } catch (Exception $e) {
             return "No se pudo inscribir el usuario en el Profesorado" . $e->getMessage();
